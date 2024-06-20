@@ -1,6 +1,6 @@
 // =======================================================
-// CI411 SDL Game
-// Artemi Sementsenko UoBGames, 2022
+// Space Fighter
+// Artemi Sementsenko, 2022
 // =======================================================
 // Libraries to include
 #include <SDL.h>
@@ -12,9 +12,19 @@
 #include <SDL_image.h>
 #include <math.h>
 #include <string>
-#include "GameObjects.h"
+#include "Enemy.h"
+#include "Waypoint.h"
+#include "Item.h"
+#include "PC.h"
+#include "Projectile.h"
 #include "WayPointMap.h"
 using namespace std;
+
+// Constants
+#define SCREEN_WIDTH 600
+#define SCREEN_HEIGHT 800
+#define SPRITE_SIZE 32
+#define FPS 50
 
 // Function Prototypes
 void startSDL();
@@ -36,13 +46,6 @@ void startBossFight();
 void winScreen();
 void RenderHPBar(int x, int y, int w, int h, float Percent, SDL_Color FGColor, SDL_Color BGColor);
 SDL_Color color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-
-
-// Constants
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 800
-#define SPRITE_SIZE 32
-#define FPS 50
 
 
 // Random generator
@@ -67,6 +70,7 @@ SDL_Surface* mainGameSurface = NULL;
 SDL_Renderer* renderer = NULL;
 SDL_Texture* gameBackground = NULL;
 SDL_Event playerInputEvent;
+
 // Game Objects
 PC pc;
 Projectile bullet[9];
